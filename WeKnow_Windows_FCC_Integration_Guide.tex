@@ -1,6 +1,6 @@
 %=====================================================================
 %  We Know Group | FreedomPay Windows FCC Integration Guide
-%  Auth & Capture  --  Version 2.0 (July 2026)
+%  Auth & Capture  --  Version 1.0 (July 2026)
 %
 %  Branding per "We Know Group Brand Guidelines V2 2023":
 %    - Primary colours: Graphite #121212, Azure #00A6D3, White
@@ -194,7 +194,7 @@
   % --- T&Cs: bottom-left, range left (brand supporting-element spec) ---
   \node[anchor=south west,align=left]
     at ([xshift=16mm,yshift=18mm]current page.south west)
-    {{\color{weknowgraphite}\normalsize\bfseries Version 2.0}\quad
+    {{\color{weknowgraphite}\normalsize\bfseries Version 1.0}\quad
      {\color{weknowgreyN}\normalsize July 2026}\\[5pt]
      {\color{weknowgreyN}\footnotesize We Know Group --- Internal Implementation \& Support Documentation}\\[2pt]
      {\color{weknowgreyN}\footnotesize Prepared for FreedomPay certification per Certification Documentation Requirements Guide v1.9}};
@@ -216,16 +216,12 @@
 \rowcolor{weknownight}\color{white}\textbf{Version} &
 \color{white}\textbf{Date} & \color{white}\textbf{Author} &
 \color{white}\textbf{Reason for Change}\\
-2.0 & 2026-07-10 & WeKnow Integrations &
-Full refresh against docs.freedompay.com: updated UAT/Production
-IP ranges and domain allow-lists, FCC 5.4.x configuration keys
-(\texttt{BinMap2.txt}, AMA v2 endpoints), Standalone installer flow
-with Remote Update Service, current error-code tables, FreedomPay
-L2 support contacts and SLAs, and new data-flow diagrams.\\
-\rowcolor{weknowgreyL}
-1.x & 2024 & WeKnow Integrations &
-Initial Windows FCC Auth \& Capture documentation set
-(FCC 5.3.2.15 baseline).\\
+1.0 & 2026-07-10 & WeKnow Integrations &
+Initial release --- Windows FCC Auth \& Capture integration and
+certification documentation for standalone deployments (FCC 5.4.x):
+system overview and data-flow diagrams, setup and configuration
+(including US, UK, EU and Australia regional settings), and the
+Level 1 troubleshooting guide.\\
 \end{tabularx}
 \end{center}
 
@@ -749,8 +745,8 @@ region, then restart both services.
 <add key="merchantCurrencyCode" value="USD" />
 
 <!-- FreewayClientService.exe.config -->
-<add key="dcc.LocalCurrency" value="USD" />
-<add key="dcc.LocalCurrencyCode" value="840" />
+<add key="dcc.localCurrency" value="USD" />
+<add key="dcc.localCurrencyCode" value="840" />
 \end{lstlisting}
 
 \paragraph{2. United Kingdom}
@@ -761,8 +757,8 @@ region, then restart both services.
 <add key="merchantCurrencyCode" value="GBP" />
 
 <!-- FreewayClientService.exe.config -->
-<add key="dcc.LocalCurrency" value="GBP" />
-<add key="dcc.LocalCurrencyCode" value="826" />
+<add key="dcc.localCurrency" value="GBP" />
+<add key="dcc.localCurrencyCode" value="826" />
 \end{lstlisting}
 
 \paragraph{3. European Union}
@@ -773,8 +769,8 @@ region, then restart both services.
 <add key="merchantCurrencyCode" value="EUR" />
 
 <!-- FreewayClientService.exe.config -->
-<add key="dcc.LocalCurrency" value="EUR" />
-<add key="dcc.LocalCurrencyCode" value="978" />
+<add key="dcc.localCurrency" value="EUR" />
+<add key="dcc.localCurrencyCode" value="978" />
 \end{lstlisting}
 
 \paragraph{4. Australia}
@@ -785,8 +781,8 @@ region, then restart both services.
 <add key="merchantCurrencyCode" value="AUD" />
 
 <!-- FreewayClientService.exe.config -->
-<add key="dcc.LocalCurrency" value="AUD" />
-<add key="dcc.LocalCurrencyCode" value="036" />
+<add key="dcc.localCurrency" value="AUD" />
+<add key="dcc.localCurrencyCode" value="036" />
 \end{lstlisting}
 
 Australia uses FreedomPay's \texttt{global2} receipt formatter (not a
