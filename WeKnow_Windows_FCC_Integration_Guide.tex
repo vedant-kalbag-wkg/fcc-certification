@@ -172,28 +172,36 @@
        ([xshift=30mm,yshift=-13mm]current page.north west);
 
   % --- Large centred WeKnow logo (stacked variant) = the hero ---
-  \node[anchor=north] at ([yshift=-64mm]current page.north)
-       {\includegraphics[width=58mm]{wkg-logo-stacked}};
+  \node[anchor=north] at ([yshift=-50mm]current page.north)
+       {\includegraphics[width=52mm]{wkg-logo-stacked}};
 
   % --- Centred title / Azure hero rule / subtitle ---
   \node[anchor=north,align=center,text width=185mm]
-       at ([yshift=-150mm]current page.north)
-       {{\color{weknowgraphite}\fontsize{26}{31}\selectfont\bfseries FreedomPay Windows FCC Documentation}\\[12pt]
-        {\color{weknowazure}\rule{42mm}{2pt}}\\[12pt]
+       at ([yshift=-126mm]current page.north)
+       {{\color{weknowgraphite}\fontsize{26}{31}\selectfont\bfseries FreedomPay Windows FCC Documentation}\\[11pt]
+        {\color{weknowazure}\rule{42mm}{2pt}}\\[11pt]
         {\color{weknowsea}\fontsize{16}{20}\selectfont Auth \& Capture Integration Guide}};
 
-  % --- T&Cs: bottom-left, range left (brand supporting-element spec) ---
-  \node[anchor=south west,align=left]
-    at ([xshift=16mm,yshift=18mm]current page.south west)
-    {{\color{weknowgraphite}\normalsize\bfseries Version 1.0}\quad
-     {\color{weknowgreyN}\normalsize July 2026}\\[5pt]
-     {\color{weknowgreyN}\footnotesize We Know Group --- Internal Implementation \& Support Documentation}\\[2pt]
-     {\color{weknowgreyN}\footnotesize Prepared for FreedomPay certification per Certification Documentation Requirements Guide v1.9}};
+  % --- Metadata panel (content structure per WeKnow spec cover), sky card ---
+  \node[anchor=north, fill=weknowsky, rounded corners=3mm,
+        inner xsep=12mm, inner ysep=8mm]
+       at ([yshift=-174mm]current page.north)
+       {\renewcommand{\arraystretch}{1.5}%
+        \begin{tabular}{@{}l@{\hspace{12mm}}l@{}}
+          {\color{weknowsea}\bfseries Version} & {\color{weknowgraphite}1.0}\\
+          {\color{weknowsea}\bfseries Date} & {\color{weknowgraphite}July 2026}\\
+          {\color{weknowsea}\bfseries Classification} & {\color{weknowgraphite}Confidential}\\
+          {\color{weknowsea}\bfseries Prepared by} & {\color{weknowgraphite}We Know Group --- Integrations}\\
+          {\color{weknowsea}\bfseries Status} & {\color{weknowgraphite}Issued for FreedomPay certification}\\
+        \end{tabular}};
 
-  % --- URL: bottom-right (brand supporting-element spec) ---
-  \node[anchor=south east]
-    at ([xshift=-16mm,yshift=18mm]current page.south east)
-    {\color{weknowsea}\small www.WeKnowLondon.com};
+  % --- Confidentiality notice + rule (bottom, centred) ---
+  \node[anchor=south,align=center,text width=150mm]
+       at ([yshift=20mm]current page.south)
+       {{\color{weknowgreyM}\rule{55mm}{0.4pt}}\\[8pt]
+        {\color{weknowgreyN}\footnotesize This document contains confidential and proprietary
+         information belonging to We Know Group. It is intended solely for the use of authorised
+         recipients and may not be reproduced or distributed without prior written consent.}};
 \end{tikzpicture}
 \end{titlepage}
 
