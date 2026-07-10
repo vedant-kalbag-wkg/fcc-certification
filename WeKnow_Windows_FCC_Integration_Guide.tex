@@ -149,47 +149,38 @@
 \begin{document}
 
 %=====================================================================
-% COVER  (We Know Group brand: white-dominant, logo top-left @ 52mm/10mm
-%         per print spec, Azure as accent -- signature stripe, wink-echo
-%         rounded-square motif in Azure tints, WeKnow voice headline)
+% COVER  (We Know Group brand: white cover with the large centred WeKnow
+%         logo as the hero and the title "FreedomPay Windows FCC
+%         Documentation" below. Azure as accent: symmetric wink-echo tint
+%         motifs framing the top, and a centred Azure hero rule.)
 %=====================================================================
 \begin{titlepage}
 \thispagestyle{empty}
 \begin{tikzpicture}[remember picture,overlay]
-  % --- Left Azure accent stripe (brand signature spine) ---
-  \fill[weknowazure] (current page.north west) rectangle
-       ([xshift=6mm]current page.south west);
+  % --- 'Wink' echo: symmetric Azure-tint rounded squares framing the top ---
+  \fill[weknowazure20,rounded corners=8mm]
+       ([xshift=-46mm,yshift=-46mm]current page.north east) rectangle
+       ([xshift=14mm,yshift=-8mm]current page.north east);
+  \fill[weknowazure40,rounded corners=5mm]
+       ([xshift=-30mm,yshift=-40mm]current page.north east) rectangle
+       ([xshift=8mm,yshift=-13mm]current page.north east);
+  \fill[weknowazure20,rounded corners=8mm]
+       ([xshift=-14mm,yshift=-46mm]current page.north west) rectangle
+       ([xshift=46mm,yshift=-8mm]current page.north west);
+  \fill[weknowazure40,rounded corners=5mm]
+       ([xshift=-8mm,yshift=-40mm]current page.north west) rectangle
+       ([xshift=30mm,yshift=-13mm]current page.north west);
 
-  % --- 'Wink' echo: nested Azure-tint rounded squares, top-right (bleed) ---
-  \fill[weknowazure20,rounded corners=10mm]
-       ([xshift=-58mm,yshift=-52mm]current page.north east) rectangle
-       ([xshift=16mm,yshift=16mm]current page.north east);
-  \fill[weknowazure40,rounded corners=7mm]
-       ([xshift=-40mm,yshift=-40mm]current page.north east) rectangle
-       ([xshift=12mm,yshift=10mm]current page.north east);
-  \fill[weknowazure,rounded corners=5mm]
-       ([xshift=-28mm,yshift=-34mm]current page.north east) rectangle
-       ([xshift=6mm,yshift=4mm]current page.north east);
+  % --- Large centred WeKnow logo (stacked variant) = the hero ---
+  \node[anchor=north] at ([yshift=-64mm]current page.north)
+       {\includegraphics[width=58mm]{wkg-logo-stacked}};
 
-  % --- Official WeKnow logo: top-left, 52mm @ 10mm margin (brand spec) ---
-  \node[anchor=north west]
-    at ([xshift=16mm,yshift=-14mm]current page.north west)
-    {\includegraphics[width=52mm]{wkg-logo-horizontal}};
-
-  % --- Headline (WeKnow voice: wordmark + lowercase follow-on) ---
-  \node[anchor=west,align=left]
-    at ([xshift=16mm,yshift=34mm]current page.west)
-    {\color{weknowgreyN}\fontsize{22}{26}\selectfont how to connect};
-  \node[anchor=west,align=left,font=\bfseries]
-    at ([xshift=16mm,yshift=4mm]current page.west)
-    {\color{weknowgraphite}\fontsize{40}{46}\selectfont FreedomPay\\[2pt]Windows FCC};
-  % Azure hero rule (highlights the key element)
-  \fill[weknowazure]
-    ([xshift=17mm,yshift=-18.5mm]current page.west) rectangle
-    ([xshift=61mm,yshift=-16mm]current page.west);
-  \node[anchor=west,align=left]
-    at ([xshift=16mm,yshift=-28mm]current page.west)
-    {\color{weknowsea}\fontsize{18}{22}\selectfont Auth \& Capture Integration Guide};
+  % --- Centred title / Azure hero rule / subtitle ---
+  \node[anchor=north,align=center,text width=185mm]
+       at ([yshift=-150mm]current page.north)
+       {{\color{weknowgraphite}\fontsize{26}{31}\selectfont\bfseries FreedomPay Windows FCC Documentation}\\[12pt]
+        {\color{weknowazure}\rule{42mm}{2pt}}\\[12pt]
+        {\color{weknowsea}\fontsize{16}{20}\selectfont Auth \& Capture Integration Guide}};
 
   % --- T&Cs: bottom-left, range left (brand supporting-element spec) ---
   \node[anchor=south west,align=left]
