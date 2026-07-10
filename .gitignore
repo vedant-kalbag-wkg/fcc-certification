@@ -1,0 +1,23 @@
+# ---- LaTeX build artifacts (Overleaf regenerates these) ----
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
+WeKnow_Windows_FCC_Integration_Guide.pdf
+
+# ---- macOS ----
+.DS_Store
+
+# ---- Source & reference material (kept local, not synced to Overleaf) ----
+*.docx
+FCC Documentation Example v1.3.pdf
