@@ -61,6 +61,10 @@
 \definecolor{weknowgreyN}{HTML}{575A5C}
 \definecolor{weknowgreyM}{HTML}{ADADAD}
 \definecolor{weknowgreyL}{HTML}{F4F4F4}
+\definecolor{weknowazure80}{HTML}{33B8DC}    % Azure tints (brand: tint Azure only)
+\definecolor{weknowazure60}{HTML}{66CAE5}
+\definecolor{weknowazure40}{HTML}{99DBED}
+\definecolor{weknowazure20}{HTML}{CCEDF6}
 
 %---------------------------------------------------------------------
 % Headers / footers -- thin ruled band, real logo top-right
@@ -69,8 +73,8 @@
 \fancyhf{}
 \fancyhead[L]{\footnotesize\color{weknowgreyN}\nouppercase{\leftmark}}
 \fancyhead[R]{\raisebox{-0.35\height}{\includegraphics[height=15pt]{wkg-logo-horizontal}}}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\headrule}{\hbox to\headwidth{\color{weknowgreyM}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{weknowazure}\leaders\hrule height \headrulewidth\hfill}}
 \fancyfoot[L]{\scriptsize\color{weknowgreyN}Confidential --- We Know Group}
 \fancyfoot[C]{\scriptsize\color{weknowgreyN}FreedomPay Windows FCC --- Auth \& Capture}
 \fancyfoot[R]{\scriptsize\color{weknowgreyN}Page \thepage\ of \pageref{LastPage}}
@@ -81,15 +85,16 @@
 % Section styling
 %---------------------------------------------------------------------
 \titleformat{\section}
-  {\color{weknownight}\LARGE\bfseries}
-  {\thesection}{0.7em}{}
+  {\color{weknowgraphite}\LARGE\bfseries}
+  {\color{weknowazure}\thesection}{0.7em}{}
+  [{\vspace{3pt}\color{weknowazure}\titlerule[1.4pt]}]
 \titleformat{\subsection}
   {\color{weknowsea}\Large\bfseries}
-  {\thesubsection}{0.6em}{}
+  {\color{weknowazure}\thesubsection}{0.6em}{}
 \titleformat{\subsubsection}
   {\color{weknowgraphite}\large\bfseries}
-  {\thesubsubsection}{0.6em}{}
-\titlespacing*{\section}{0pt}{20pt}{10pt}
+  {\color{weknowazure}\thesubsubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{20pt}{12pt}
 \titlespacing*{\subsection}{0pt}{16pt}{6pt}
 \titlespacing*{\subsubsection}{0pt}{12pt}{4pt}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\quad #1}}
@@ -144,43 +149,60 @@
 \begin{document}
 
 %=====================================================================
-% COVER  (FreedomPay example layout, WeKnow brand: azure hero band,
-%         white title, real horizontal logo on the white lower band)
+% COVER  (We Know Group brand: white-dominant, logo top-left @ 52mm/10mm
+%         per print spec, Azure as accent -- signature stripe, wink-echo
+%         rounded-square motif in Azure tints, WeKnow voice headline)
 %=====================================================================
 \begin{titlepage}
 \thispagestyle{empty}
 \begin{tikzpicture}[remember picture,overlay]
-  % Azure hero band across the top ~62% of the page
+  % --- Left Azure accent stripe (brand signature spine) ---
+  \fill[weknowazure] (current page.north west) rectangle
+       ([xshift=6mm]current page.south west);
+
+  % --- 'Wink' echo: nested Azure-tint rounded squares, top-right (bleed) ---
+  \fill[weknowazure20,rounded corners=10mm]
+       ([xshift=-58mm,yshift=-52mm]current page.north east) rectangle
+       ([xshift=16mm,yshift=16mm]current page.north east);
+  \fill[weknowazure40,rounded corners=7mm]
+       ([xshift=-40mm,yshift=-40mm]current page.north east) rectangle
+       ([xshift=12mm,yshift=10mm]current page.north east);
+  \fill[weknowazure,rounded corners=5mm]
+       ([xshift=-28mm,yshift=-34mm]current page.north east) rectangle
+       ([xshift=6mm,yshift=4mm]current page.north east);
+
+  % --- Official WeKnow logo: top-left, 52mm @ 10mm margin (brand spec) ---
+  \node[anchor=north west]
+    at ([xshift=16mm,yshift=-14mm]current page.north west)
+    {\includegraphics[width=52mm]{wkg-logo-horizontal}};
+
+  % --- Headline (WeKnow voice: wordmark + lowercase follow-on) ---
+  \node[anchor=west,align=left]
+    at ([xshift=16mm,yshift=34mm]current page.west)
+    {\color{weknowgreyN}\fontsize{22}{26}\selectfont how to connect};
+  \node[anchor=west,align=left,font=\bfseries]
+    at ([xshift=16mm,yshift=4mm]current page.west)
+    {\color{weknowgraphite}\fontsize{40}{46}\selectfont FreedomPay\\[2pt]Windows FCC};
+  % Azure hero rule (highlights the key element)
   \fill[weknowazure]
-    (current page.north west) rectangle
-    ([yshift=-185mm]current page.north east);
-  % Night-blue baseline accent under the band
-  \fill[weknownight]
-    ([yshift=-185mm]current page.north west) rectangle
-    ([yshift=-188mm]current page.north east);
-  % Headline -- white on azure
-  \node[anchor=north west,text=white,align=left,font=\bfseries]
-    at ([xshift=20mm,yshift=-52mm]current page.north west)
-    {\fontsize{36}{42}\selectfont FreedomPay\\[3pt]Windows FCC};
-  \node[anchor=north west,text=white,align=left]
-    at ([xshift=20mm,yshift=-118mm]current page.north west)
-    {\fontsize{18}{24}\selectfont Auth \& Capture Integration Guide};
-  % Version block -- graphite on white
-  \node[anchor=north west,align=left,text=weknowgraphite]
-    at ([xshift=20mm,yshift=-205mm]current page.north west)
-    {{\Large\bfseries Version 2.0}\\[4pt]
-     {\normalsize\color{weknownight}July 2026}\\[2pt]
-     {\small\color{weknowgreyN}We Know Group --- Internal Implementation \& Support Documentation}};
-  % Official WeKnow logo -- bottom-left, on the white band
-  \node[anchor=south west]
-    at ([xshift=20mm,yshift=22mm]current page.south west)
-    {\includegraphics[width=48mm]{wkg-logo-horizontal}};
-  % Provenance -- bottom-right
-  \node[anchor=south east,text=weknowgreyN,font=\footnotesize,align=right]
-    at ([xshift=-20mm,yshift=24mm]current page.south east)
-    {Prepared for FreedomPay certification\\
-     per Certification Documentation Requirements Guide v1.9\\[2pt]
-     www.WeKnowLondon.com};
+    ([xshift=17mm,yshift=-18.5mm]current page.west) rectangle
+    ([xshift=61mm,yshift=-16mm]current page.west);
+  \node[anchor=west,align=left]
+    at ([xshift=16mm,yshift=-28mm]current page.west)
+    {\color{weknowsea}\fontsize{18}{22}\selectfont Auth \& Capture Integration Guide};
+
+  % --- T&Cs: bottom-left, range left (brand supporting-element spec) ---
+  \node[anchor=south west,align=left]
+    at ([xshift=16mm,yshift=18mm]current page.south west)
+    {{\color{weknowgraphite}\normalsize\bfseries Version 2.0}\quad
+     {\color{weknowgreyN}\normalsize July 2026}\\[5pt]
+     {\color{weknowgreyN}\footnotesize We Know Group --- Internal Implementation \& Support Documentation}\\[2pt]
+     {\color{weknowgreyN}\footnotesize Prepared for FreedomPay certification per Certification Documentation Requirements Guide v1.9}};
+
+  % --- URL: bottom-right (brand supporting-element spec) ---
+  \node[anchor=south east]
+    at ([xshift=-16mm,yshift=18mm]current page.south east)
+    {\color{weknowsea}\small www.WeKnowLondon.com};
 \end{tikzpicture}
 \end{titlepage}
 
@@ -754,6 +776,26 @@ region, then restart both services.
 <add key="dcc.LocalCurrency" value="EUR" />
 <add key="dcc.LocalCurrencyCode" value="978" />
 \end{lstlisting}
+
+\paragraph{4. Australia}
+\begin{lstlisting}
+<!-- FreewayServerService.exe.config -->
+<add key="baseCulture" value="en-AU" />
+<add key="receiptFormatter" value="global2" />
+<add key="merchantCurrencyCode" value="AUD" />
+
+<!-- FreewayClientService.exe.config -->
+<add key="dcc.LocalCurrency" value="AUD" />
+<add key="dcc.LocalCurrencyCode" value="036" />
+\end{lstlisting}
+
+Australia uses FreedomPay's \texttt{global2} receipt formatter (not a
+country-specific value such as \texttt{us} or \texttt{uk}), and AUD carries
+the ISO numeric currency code \texttt{036}. Where Dynamic Currency
+Conversion is offered, the AU BIN-range list
+(\texttt{DCC/GBCS.AUD.TXT}) and the DCC disclaimer keys also apply ---
+see the FreedomPay localisation reference at
+\url{https://docs.freedompay.com/fcc/configurations/localization/australia}.
 
 \begin{wkwarn}[UK deployments --- signature validation]
 Where the signature Card Verification Method applies (attended lanes),
